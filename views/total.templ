@@ -1,0 +1,8 @@
+package views
+
+import "strconv"
+import "github.com/Just-A-NoobieDev/go-htmx-templ-todo/models"
+
+templ Total(todos []*models.SingleTodo) {
+  <h2 id="total" class="text-[40px] font-semibold text-black mt-4 tracking-[4px]">You’ve got <br /> {strconv.Itoa(len(todos))} tasks today!</h2>
+}

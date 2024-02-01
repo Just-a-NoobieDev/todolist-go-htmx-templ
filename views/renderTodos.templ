@@ -1,0 +1,19 @@
+package views
+
+import "github.com/Just-A-NoobieDev/go-htmx-templ-todo/models"
+
+
+templ RenderTodos(todos []*models.SingleTodo, tasks map[string]interface{}) {
+    <div id="todos" class="flex flex-wrap gap-8 items-center justify-center">
+        if len(todos) > 0 {
+            
+            for _, todo := range todos {
+
+                @RenderTodo(todo, tasks)
+                    
+            }
+        } else {
+			<em class="text-[#665B5280] text-[30px]">Looks like you've completed everything! Take a moment to celebrate your accomplishments or add new tasks to keep the momentum going.</em>
+        }
+    </div>
+}

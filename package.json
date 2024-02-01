@@ -1,0 +1,13 @@
+{
+  "name": "go-htmx-templ-todo-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build": "tailwindcss build -o dist/tailwind.css",
+    "watch": "tailwindcss build -o dist/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
