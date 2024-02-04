@@ -199,32 +199,19 @@ func EditTodo(c echo.Context) error {
 
 func SearchTodo(c echo.Context) error {
 	var search = c.FormValue("todo")
-	todoss := models.TodoList{}
+	todos = models.TodoList{}
 	db := util.ConnectToDB()
 	stmt := SearchTodoQuery(search)
-	defer db.Query(stmt).Rows(&todoss)
+	db.Query(stmt).Rows(&todos)
 	defer db.Close()
 
 	GetAllTaskPerTodoId()
 
-	return c.JSON(200, todoss)
-
-	// component := views.RenderTodos(todos, taskList)
-	// return component.Render(c.Request().Context() ,c.Response().Writer)
-
-	// if search == "" {
-	// 	todos = models.TodoList{}
-	
-	// 	db := util.ConnectToDB()
-	// 	stmt := SearchTodoQuery(search)
-	// 	defer db.Query(stmt).Rows(&todos)
-	// 	defer db.Close()
-
-	// 	GetAllTaskPerTodoId()
-	// 	component := views.RenderTodos(todos, taskList)
-	// 	return component.Render(c.Request().Context() ,c.Response().Writer)
-	// } else {
-	// 	component := views.RenderTodos(todos, taskList)
-	// 	return component.Render(c.Request().Context() ,c.Response().Writer)
-	// }
+	if len(todos) == 0 {
+		component := views.NotFound()
+		return component.Render(c.Request().Context() ,c.Response().Writer)
+	} else {
+		component := views.RenderTodos(todos, taskList)
+		return component.Render(c.Request().Context() ,c.Response().Writer)
+	}
 }

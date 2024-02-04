@@ -2,6 +2,7 @@ package main
 
 import (
 	todo "github.com/Just-A-NoobieDev/go-htmx-templ-todo/handlers"
+	auth "github.com/Just-A-NoobieDev/go-htmx-templ-todo/handlers"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
@@ -31,6 +32,8 @@ func main() {
 	router.GET("/edit-status", todo.UpdateTodoStatus)
 	router.PUT("/edit-description", todo.UpdateTodoDesc)
 	router.DELETE("/delete/:id", todo.DeleteTodoById)
+
+	router.GET("/login", auth.Login)
 
 	router.Logger.Fatal(router.Start(":8080"))
 }
